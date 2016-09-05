@@ -53,7 +53,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/opt/local/sbin:$PATH"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -74,13 +74,37 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #---------------------------------------------------------
-# alias for using easily the .zshrc
+# alias for using easily the .zshrc.
 alias zz="vim ~/.zshrc"
 alias zs="source ~/.zshrc"
+alias vm="vim ~/.vimrc"
 #---------------------------------------------------------
-# alias for git
+# alias for git.
 alias gitl="git log --decorate --all --oneline"
+alias gitll="gitl | tail -r"
 alias gitm="git commit -m"
+alias gits="git status"
+alias gitp="git push origin master"
+alias gitu="git pull --rebase"
+alias gito="git pull --rebase && git push origin master"
 #---------------------------------------------------------
-# Change host to 'BoBibelo'
+alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+# Change host to 'BoBibelo'.
 export HOST="BoBibelo"
+export USER="Arthur 'BoBibelo' Douillard"
+#---------------------------------------------------------
+# Alias for python3 quick access.
+alias mypy="python3"
+# Alias for fancy OSXey output
+alias myos="OSXey -c -blue"
+#---------------------------------------------------------
+# Color for psql
+export YELLOW=`echo -e '\033[1;33m'`
+export LIGHT_CYAN=`echo -e '\033[1;36m'`
+export NOCOLOR=`echo -e '\033[0m'`
+export PAGER="sed \"s/\([[:space:]]\+[0-9.\-]\+\)$/${LIGHT_CYAN}\1$NOCOLOR/;
+s/\([[:space:]]\+[0-9.\-]\+[[:space:]]\)/${LIGHT_CYAN}\1$NOCOLOR/g;
+s/|/$YELLOW|$NOCOLOR/g;s/^\([-+]\+\)/$YELLOW\1$NOCOLOR/\""
+# --------------------------------------------------------
+# slrn
+export NNTPSERVER=news.epita.fr
