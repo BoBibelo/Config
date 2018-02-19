@@ -49,13 +49,17 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git osx)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
+export GOPATH="$HOME"
+export PATH="$PATH:/usr/local/opt/go/libexec/bin"
+export PATH="/usr/local/bin:/usr/local/include:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:$PATH"
+export PATH="/Users/arthur/anaconda3/bin:$PATH"
+export PATH="/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH"
 
+# export MANPATH="/usr/l/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 
 # Compilation flags
@@ -77,34 +81,40 @@ source $ZSH/oh-my-zsh.sh
 # alias for using easily the .zshrc.
 alias zz="vim ~/.zshrc"
 alias zs="source ~/.zshrc"
-alias vm="vim ~/.vimrc"
+alias vim="nvim"
+alias vm="vim ~/.config/nvim/init.vim"
 #---------------------------------------------------------
 # alias for git.
-alias gitl="git log --decorate --all --oneline"
-alias gitll="gitl | tail -r"
+alias gitl='git log --graph --decorate --all --oneline --pretty=format:"%h %an %s"'
+alias gitll="gitl | less"
 alias gitm="git commit -m"
 alias gits="git status"
-alias gitp="git push origin master"
-alias gitu="git pull --rebase"
+alias gitp="git push origin"
+alias gitu="git pull --rebase origin"
 alias gito="git pull --rebase && git push origin master"
+alias gitam="git commit --amend --no-edit"
+alias gitc="git clone --recursive"
 #---------------------------------------------------------
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 # Change host to 'BoBibelo'.
-export HOST="BoBibelo"
-export USER="Arthur 'BoBibelo' Douillard"
+export HOST="Mougatine"
+export USER="Arthur 'Mougatine' Douillard"
 #---------------------------------------------------------
-# Alias for python3 quick access.
-alias mypy="python3"
+alias pip_upgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 # Alias for fancy OSXey output
 alias myos="OSXey -c -blue"
+alias py="python"
+alias jupy="jupyter notebook"
+alias pelipublish="pelican content -o output -s pelicanconf.py && ghp-import output && git push git@github.com:Mougatine/Mougatine.github.io.git gh-pages:master"
+alias python2="/usr/bin/python"
 #---------------------------------------------------------
-# Color for psql
-export YELLOW=`echo -e '\033[1;33m'`
-export LIGHT_CYAN=`echo -e '\033[1;36m'`
-export NOCOLOR=`echo -e '\033[0m'`
-export PAGER="sed \"s/\([[:space:]]\+[0-9.\-]\+\)$/${LIGHT_CYAN}\1$NOCOLOR/;
-s/\([[:space:]]\+[0-9.\-]\+[[:space:]]\)/${LIGHT_CYAN}\1$NOCOLOR/g;
-s/|/$YELLOW|$NOCOLOR/g;s/^\([-+]\+\)/$YELLOW\1$NOCOLOR/\""
-# --------------------------------------------------------
 # slrn
 export NNTPSERVER=news.epita.fr
+export GOPATH="/usr/local/Cellar/go/1.8.3/bin/go"
+
+# Export languages (else some python modules breaks on UTF-8 handling)
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+export PATH="/usr/local/texlive/2016basic/bin/:$PATH"
+PAGER=less
